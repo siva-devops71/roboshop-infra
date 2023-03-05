@@ -16,7 +16,6 @@ resource "aws_instance" "ec2" {
 
 resource "null_resource" "provisioner" {
   provisioner "remote-exec" {
-
     connection {
       host = aws_instance.ec2.public_ip
       user = "centos"
@@ -24,7 +23,7 @@ resource "null_resource" "provisioner" {
     }
 
     inline = [
-      "git clone https://github.com/siva-devops71/roboshop-shell",
+      "git clone https://github.com/siva-devops71/roboshop-shell.git",
       "cd roboshop-shell",
       "sudo bash ${var.component}.sh ${var.password}"
     ]
