@@ -18,8 +18,8 @@ resource "null_resource" "provisioner" {
   provisioner "remote-exec" {
 
     connection {
-      host = aws_instance.ec2.public_ip
-      user = "root"
+      host     = aws_instance.ec2.public_ip
+      user     = "root"
       password = "DevOps321"
     }
 
@@ -31,30 +31,29 @@ resource "null_resource" "provisioner" {
   }
 }
 
-resource "aws_security_group" "sg" {
-  name        = "${var.component}-${var.env}-sg"
-  description = "Allow TLS inbound traffic"
+  resource "aws_security_group" "sg" {
+    name        = "${var.component}-${var.env}-sg"
+    description = "Allow TLS inbound traffic"
 
-  ingress {
-    description = "ALL"
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
+    ingress {
+      description = "ALL"
+      from_port   = 0
+      to_port     = 0
+      protocol    = "-1"
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+
+    egress {
+      from_port   = 0
+      to_port     = 0
+      protocol    = "-1"
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+
+    tags = {
+      Name = "${var.component}-${var.env}-sg"
+    }
   }
-
-  egress {
-    from_port        = 0
-    to_port          = 0
-    protocol         = "-1"
-    cidr_blocks      = ["0.0.0.0/0"]
-  }
-
-  tags = {
-    Name = "${var.component}-${var.env}-sg"
-  }
-}
-
 
 resource "aws_route53_record" "record" {
   zone_id = "Z04391752LS917TT76G1F"
