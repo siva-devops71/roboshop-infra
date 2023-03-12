@@ -1,7 +1,7 @@
 data "aws_ami" "ami" {
   most_recent = true
   name_regex  = "Centos-8-DevOps-Practice"
-  owners      = ["973714476881"]
+  owners      = ["904827379241"]
 }
 
 
@@ -26,7 +26,7 @@ resource "null_resource" "provisioner" {
     inline = [
       "git clone https://github.com/siva-devops71/roboshop-shell.git",
       "cd roboshop-shell",
-      "sudo bash ${var.component}.sh ${var.password}"
+      "bash ${var.component}.sh ${var.password}"
     ]
   }
 }
