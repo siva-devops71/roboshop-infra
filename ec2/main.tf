@@ -1,7 +1,7 @@
 data "aws_ami" "ami" {
   most_recent = true
   name_regex  = "Centos-8-DevOps-Practice"
-  owners      = ["904827379241"]
+  owners      = ["973714476881"]
 }
 
 
@@ -19,7 +19,7 @@ resource "null_resource" "provisioner" {
 
     connection {
       host = aws_instance.ec2.public_ip
-      user = "centos"
+      user = "root"
       password = "DevOps321"
     }
 
