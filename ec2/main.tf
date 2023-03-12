@@ -20,7 +20,7 @@ resource "null_resource" "provisioner" {
       host     = aws_instance.ec2.public_ip
       user     = "centos"
       password = "DevOps321"
-    }
+
   }
 
     inline = [
@@ -29,6 +29,7 @@ resource "null_resource" "provisioner" {
       "sudo bash ${var.component}.sh ${var.password}"
     ]
   }
+}
 
 
 resource "aws_security_group" "sg" {
