@@ -18,7 +18,7 @@ resource "null_resource" "provisioner" {
   provisioner "remote-exec" {
     connection {
       host     = aws_instance.ec2.public_ip
-      user     = "centos"
+      user     = "root"
       password = "DevOps321"
 
   }
